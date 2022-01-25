@@ -34,9 +34,8 @@ export const Header: VFC = memo(() => {
         align={"center"}
         justify={"space-between"}
         padding={{ base: 3, md: 5 }}
-        onClick={onClickHome}
       >
-        <Flex align={"center"} as="a" mr={8} _hover={{ cursor: "pointer" }}>
+        <Flex align={"center"} as="a" mr={8} _hover={{ cursor: "pointer" }} onClick={onClickHome}>
           <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
             ユーザー管理アプリ
           </Heading>
