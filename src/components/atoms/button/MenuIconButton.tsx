@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const MenuIconButton: VFC<Props> = memo((props) => {
-  const { onOpen } = props;
+  const { onOpen} = props;
   return (
     // チャクラUIのアイコンボタンの中で指定する
     // その際にaria-labelを指定しないとエラーになる
@@ -23,6 +23,7 @@ export const MenuIconButton: VFC<Props> = memo((props) => {
       // オンクリックしたらドロアーを開く関数を指定
       // プロプスで持ってきているので間違えないように
       onClick={onOpen}
+      
     />
   );
 });

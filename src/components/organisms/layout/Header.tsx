@@ -34,9 +34,14 @@ export const Header: VFC = memo(() => {
         align={"center"}
         justify={"space-between"}
         padding={{ base: 3, md: 5 }}
-        onClick={onClickHome}
       >
-        <Flex align={"center"} as="a" mr={8} _hover={{ cursor: "pointer" }}>
+        <Flex
+          align={"center"}
+          as="a"
+          mr={8}
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickHome}
+        >
           <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
             ユーザー管理アプリ
           </Heading>
@@ -44,17 +49,23 @@ export const Header: VFC = memo(() => {
         <Flex
           align={"center"}
           fontSize={"sm"}
-          flexGrow={2}
           display={{ base: "none", md: "flex" }}
+          flexGrow={2}
         >
           <Box pr={4}>
-            <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
+            <Link onClick={onClickUserManagement} >ユーザー一覧</Link>
           </Box>
-          <Link onClick={onClickSetting}>設定</Link>
+          <Link onClick={onClickSetting} >設定</Link>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
-      <MenuDrawer isOpen={isOpen} onClose={onClose} />
+      <MenuDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        onClickHome={onClickHome}
+        onClickUserManagement={onClickUserManagement}
+        onClickSetting={onClickSetting}
+      />
     </>
   );
 });
