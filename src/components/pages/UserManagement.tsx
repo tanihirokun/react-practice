@@ -7,7 +7,6 @@ import {
   Spinner,
   Center,
   useDisclosure,
-  
 } from "@chakra-ui/react";
 
 import { HeaderLayout } from "../templates/HeaderLayout";
@@ -15,19 +14,22 @@ import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { UserDetalModal } from "../organisms/user/UserDetailModal";
 import { useSelectUser } from "../../hooks/useSelectUser";
-
-
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, users, loading } = useAllUsers();
-  const { onSelectUser, selectedUser} = useSelectUser()
+  const { onSelectUser, selectedUser } = useSelectUser();
+  const { loginUser } = useLoginUser();
 
   useEffect(() => getUsers(), []);
 
-  const onClickUser = useCallback((id: number) => {
-    onSelectUser({id, users, onOpen})
-  }, [users, onSelectUser, onOpen]);
+  const onClickUser = useCallback(
+    (id: number) => {
+      onSelectUser({ id, users, onOpen });
+    },
+    [users, onSelectUser, onOpen]
+  );
 
   return (
     <>
@@ -51,7 +53,12 @@ export const UserManagement: VFC = memo(() => {
             ))}
           </Wrap>
         )}
-        <UserDetalModal user={selectedUser} isOpen={isOpen} onClose={onClose}/>
+        <UserDetalModal
+          user={selectedUser}
+          isOpen={isOpen}
+          isAdmin={loginUser?.isAdmin}
+          onClose={onClose}
+        />
       </HeaderLayout>
     </>
   );
